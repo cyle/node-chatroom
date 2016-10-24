@@ -1,0 +1,12 @@
+{
+  "name": "chatroom",
+  "version": "0.0.1",
+  "description": "a chatroom lol",
+  "main": "chatroom.js",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.5.1"
+  },
+  "author": "Cyle Gage <cylegage@gmail.com> (http://cylegage.com/)",
+  "license": "MIT"
+}

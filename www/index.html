@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<title>chatroom</title>
+<link rel="stylesheet" href="chatroom.css" />
+</head>
+<body>
+<div id="chatroom">
+<div><input id="name" type="text" placeholder="your name here" /></div>
+<div id="messages"></div>
+<div id="input">
+<form action="">
+<input id="compose" autocomplete="off" placeholder="your message here" />
+</form>
+</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="chatroom-client.js"></script>
+</body>
+</html>

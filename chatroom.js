@@ -1,11 +1,21 @@
 // load up our dependencies
+var fs = require('fs');
+var https = require('https');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
-// config options
+// what port the chatroom will run on and be accessible via
 var chat_port = 31337;
+
+// define our server options
+var options = {
+    key: fs.readFileSync('./chatroom.key.pem'),
+    cert: fs.readFileSync('./chatroom.crt.pem'),
+};
+
+// create our web server and our socket server
+var server = https.createServer(options, app);
+var io = require('socket.io')(server);
 
 // deal with the index file
 app.get('/', function(req, res) {
@@ -43,6 +53,6 @@ io.on('connection', function(socket) {
 });
 
 // cool, let's listen for new clients
-http.listen(chat_port, function() {
+server.listen(chat_port, function() {
     console.log('listening on *:' + chat_port);
 });

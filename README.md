@@ -10,9 +10,17 @@ Clone this repo. Go into it with Terminal.
 
 Then: `npm install` to get the dependencies.
 
-Then: `node chatroom.js` to run the chatroom.
+Then: make a self-signed certificate:
 
-That's it. Go to your browser as specified and check it out!
+1. Make your key: `openssl genrsa -out chatroom.key.pem 4096`
+2. Make your signing request: `openssl req -new -sha512 -key chatroom.key.pem -out chatroom.csr.pem`
+3. Sign it yourself: `openssl x509 -req -in chatroom.csr.pem -signkey chatroom.key.pem -out chatroom.crt.pem`
+
+(Yes, that makes an "insecure" self-signed certificate, but that's fine.)
+
+Then: `node chatroom.js` to run the chatroom, access it in your browser via `https://localhost:31337/` (HTTPS, with our custom port).
+
+That's it. Check it out.
 
 ## Usage
 
@@ -28,8 +36,9 @@ The [font I used](https://managore.itch.io/m5x7) is pretty awesome.
 
 ## To dos
 
-- [ ] Serve over https/wss
+- [ ] Encryption of messages using PGP or something? I dunno.
 - [ ] Auth/register capability of some kind? But always allow anonymous.
 - [ ] Current user list
 - [ ] Sounds, lol
 - [ ] iOS client
+- [x] Serve over https/wss
